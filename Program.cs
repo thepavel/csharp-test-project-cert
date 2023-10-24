@@ -60,7 +60,7 @@
 //
 
 
-string value = "102";
+string value = "bad";
 int result = 0;
 if (int.TryParse(value, out result))
 {
