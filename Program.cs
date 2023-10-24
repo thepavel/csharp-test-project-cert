@@ -41,9 +41,14 @@
 
 /* Compare casting and converting a decimal into an int */
 
-int value = (int)1.5m; // casting truncates
-Console.WriteLine(value);
+//      int value = (int)1.5m; // casting truncates
+//      Console.WriteLine(value);
+//      int value2 = Convert.ToInt32(1.5m); // converting rounds up correctly
+//      Console.WriteLine(value2);
 
-int value2 = Convert.ToInt32(1.5m); // converting rounds up correctly
-Console.WriteLine(value2);
+/* Int.Parse */
 
+string name = "Bob";
+Console.WriteLine(int.Parse(name));
+
+// ^^ throws exception
