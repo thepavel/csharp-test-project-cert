@@ -50,12 +50,15 @@
 
 // string name = "Bob";
 // Console.WriteLine(int.Parse(name));
+// string name = "Bob";
+// Console.WriteLine(int.Parse(name));
 
-// // ^^ throws exception
+// // // ^^ throws exception
 
 // 
 /* int.TryParse */
 //
+
 
 string value = "102";
 int result = 0;
