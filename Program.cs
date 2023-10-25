@@ -56,5 +56,5 @@ char[] valueArray = value.ToCharArray();
 
 Array.Reverse(valueArray);
 
-string result = new string(valueArray);
+string result = string.Join(",", valueArray); //new string(valueArray);
 Console.WriteLine(result);
