@@ -49,20 +49,22 @@
     //     Console.WriteLine($"-- {pallet}");
     // }
     /* END */
+
+
+// string value = "abc123";
+// char[] valueArray = value.ToCharArray();
+
+// Array.Reverse(valueArray);
+
+// string result = string.Join(",", valueArray); //new string(valueArray);
+// Console.WriteLine(result);
+
+// var items = result.Split(",");
+
+// foreach(var item in items) 
+// {
+//     Console.WriteLine(item);
+// }
+
 #endregion
-
-string value = "abc123";
-char[] valueArray = value.ToCharArray();
-
-Array.Reverse(valueArray);
-
-string result = string.Join(",", valueArray); //new string(valueArray);
-Console.WriteLine(result);
-
-var items = result.Split(",");
-
-foreach(var item in items) 
-{
-    Console.WriteLine(item);
-}
 
