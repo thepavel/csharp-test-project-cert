@@ -68,3 +68,27 @@
 
 #endregion
 
+// write code to reverse each word in a message
+
+string pangram = "The quick brown fox jumps over the lazy dog";
+
+var result = "";
+const string standard = "ehT kciuq nworb xof spmuj revo eht yzal god";
+
+var words = pangram.Split(" ");
+for (var i = 0; i < words.Length; i++)
+{
+
+    var chars = words[i].ToCharArray();
+    Array.Reverse(chars);
+    words[i] = new string(chars);
+}
+result = string.Join(" ", words);
+
+Console.WriteLine($"Result: {result}");
+Console.WriteLine($"Expected: {standard}");
+
+if (string.Compare(standard, result, true) != 0) 
+{
+    Console.WriteLine("FAIL");
+}
