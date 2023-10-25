@@ -58,3 +58,11 @@ Array.Reverse(valueArray);
 
 string result = string.Join(",", valueArray); //new string(valueArray);
 Console.WriteLine(result);
+
+var items = result.Split(",");
+
+foreach(var item in items) 
+{
+    Console.WriteLine(item);
+}
+
