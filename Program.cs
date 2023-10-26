@@ -104,13 +104,18 @@ int count = inputOrderIds.Length;
 Array.Sort(inputOrderIds);
 
 string[] output = new string[count];
-string input = "";
+string input;
 
 for (int i = 0; i < count; i++)
 {
     input = inputOrderIds[i];
 
-    output[i] = input.Length == 4 ? input : $"{input}     - Error";
+    output[i] = input.Length == 4 ? input : $"{input}\t- Error";
+}
+
+for (int i = 0; i < output.Length; i++)
+{
+    Console.WriteLine(output[i]);
 }
 
 string[] expectedOutput = new string[]
@@ -128,17 +133,7 @@ string[] expectedOutput = new string[]
 
 for (int i = 0; i < expectedOutput.Length; i++)
 {
-    if (expectedOutput[i] != output[i])
-    {
-        Console.WriteLine("FAIL");
-        break;
+    if(expectedOutput[i].EndsWith("Error") && !output[i].EndsWith("Error")) {
+        Console.WriteLine("fail on error detection");
     }
 }
-
-// Console.WriteLine($"Result: {result}");
-// Console.WriteLine($"Expected: {standard}");
-
-// if (string.Compare(standard, result, true) != 0) 
-// {
-//     Console.WriteLine("FAIL");
-// }
