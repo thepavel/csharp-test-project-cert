@@ -1,4 +1,7 @@
-﻿
+﻿string input = "Pad this";
+string padded = input.PadLeft(12);
+
+Console.WriteLine(padded);
 
 #region StringFormat
     
