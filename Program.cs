@@ -1,10 +1,4 @@
-﻿string input = "Pad this";
-string padded = input.PadLeft(12);
-var rightPad = input.PadRight(12);
-
-
-Console.WriteLine(padded);
-Console.WriteLine(rightPad.Length);
+﻿
 
 #region StringFormat
     
@@ -47,5 +41,14 @@ Console.WriteLine(rightPad.Length);
         // Console.WriteLine($"     Sub Total: {subtotal:C}");
         // Console.WriteLine($"           Tax: {taxPercentage:P2}");
         // Console.WriteLine($"     Total Billed: {total:C}");
+
+        // string input = "Pad this";
+
+        // string padded = input.PadLeft(12, '-');
+        // var rightPad = input.PadRight(12, '-');
+
+
+        // Console.WriteLine(padded);
+        // Console.WriteLine(rightPad);
     
 #endregion
