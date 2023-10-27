@@ -61,11 +61,12 @@ string comparisonMessage = $@"
 // add amount in currency format
 // Your logic here
 
-string comparisonName = currentProduct.PadRight(20);
-string comparisonPercentage = currentReturn.ToString("P", CultureInfo.InvariantCulture);
+var currentLine = CreateComparisonLine(currentProfit, currentProduct, currentReturn);
+var newProductComparisonLine = CreateComparisonLine(newProfit, newProduct, newReturn);
 
-var currentLine = $"{comparisonName}{comparisonPercentage}  {currentProfit:C}\n";
 Console.WriteLine(currentLine);
+Console.WriteLine(newProductComparisonLine);
+
 Console.WriteLine(comparisonMessage);
 
 
@@ -74,17 +75,25 @@ Console.WriteLine(string.Compare(expected, message));
 Console.WriteLine("expected:");
 Console.WriteLine(expected);
 
+static string CreateComparisonLine(decimal currentProfit, string name, decimal returnPercentage)
+{
+
+    string comparisonName = name.PadRight(20);
+    string comparisonPercentage = returnPercentage.ToString("P", CultureInfo.InvariantCulture);
+    return $"{comparisonName}{comparisonPercentage}  {currentProfit:C}\n";
+}
+
 #region StringFormat
-    
+
         // string first = "Hello";
         // string second = "World";
         // string result = string.Format("{0} {1}!", first, second);
         // Console.WriteLine(result);
-    
+
         // // decimal price = 123.45m;
         // // int discount = 50;
         // // Console.WriteLine($"Price: {price:C} (Save {discount:C})");
-    
+
         // decimal measurement = 123456.78912m;
         // Console.WriteLine($"Measurement: {measurement:N4} units"); 
 
@@ -135,5 +144,5 @@ Console.WriteLine(expected);
 
         // Console.WriteLine("1234567890123456789012345678901234567890");
         // Console.WriteLine(formattedLine);
-    
+
 #endregion
