@@ -15,6 +15,8 @@ Glorious Future     13.13 %   $63,000,000.00
 
 */
 
+using System.Globalization;
+
 const string expected = @"Dear Ms. Barros,
 As a customer of our Magic Yield offering we are excited to tell you about a new financial product that would dramatically increase your return.
 
@@ -41,24 +43,36 @@ decimal newProfit = 63000000.0m;
 var message = @$"Dear {customerName},
 As a customer of our {currentProduct} offering we are excited to tell you about a new financial product that would dramatically increase your return.
 
-Currently, you own {currentShares:N2} shares at a return of {currentReturn:P2}.
+Currently, you own {currentShares:N2} shares at a return of {currentReturn.ToString("P", CultureInfo.InvariantCulture)}.
 
-Our new product, Glorious Future offers a return of 13.13 %.  Given your current volume, your potential profit would be ¤63,000,000.00.";
+Our new product, {newProduct} offers a return of {newReturn.ToString("P", CultureInfo.InvariantCulture)}.  Given your current volume, your potential profit would be {newProfit.ToString("C", CultureInfo.InvariantCulture)}.
+";
 
 Console.WriteLine(message);
-Console.WriteLine(string.Compare(expected, message));
 //Here's a quick comparison:
 
 Console.WriteLine("Here's a quick comparison:\n");
 
-string comparisonMessage = "";
-
+string comparisonMessage = $@"
 // Magic Yield         12.75 %   $55,000,000.00      
 // Glorious Future     13.13 %   $63,000,000.00";
-
+// name: pad-right 20
+// percent: pad-right 10
+// add amount in currency format
 // Your logic here
 
+string comparisonName = currentProduct.PadRight(20);
+string comparisonPercentage = currentReturn.ToString("P", CultureInfo.InvariantCulture);
+
+var currentLine = $"{comparisonName}{comparisonPercentage}  {currentProfit:C}\n";
+Console.WriteLine(currentLine);
 Console.WriteLine(comparisonMessage);
+
+
+Console.WriteLine(string.Compare(expected, message));
+
+Console.WriteLine("expected:");
+Console.WriteLine(expected);
 
 #region StringFormat
     
