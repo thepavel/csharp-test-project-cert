@@ -1,15 +1,27 @@
 ﻿
-string message = "(What if) I am (only interested) in the last (set of parentheses)";
+//string message = "(What if) I am (only interested) in the last (set of parentheses)";
+string message = "(What if) there are (more than) one (set of parentheses)?";
+
+//retrieve all instances
 
 const string openingSymbol = "(";
 const string closingSymbol = ")";
 
-int lastOpeningPosition = message.LastIndexOf(openingSymbol);
-int lastclosingPosition = message.LastIndexOf(closingSymbol);
+while (true)
+{
 
-lastOpeningPosition += 1;
+    int openingPosition = message.IndexOf(openingSymbol);
+    int closingPosition = message.IndexOf(closingSymbol);
 
-Console.WriteLine(message[lastOpeningPosition..lastclosingPosition]);
+    if(openingPosition == -1) break;
+
+    openingPosition += 1;
+
+    Console.WriteLine(message[openingPosition..closingPosition]);
+    message = message[(closingPosition + 1)..];
+}
+
+
 
 // string message = "What is the value <span>between the tags</span>?";
 
