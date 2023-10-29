@@ -1,11 +1,14 @@
 ﻿string message = "Find what is (inside the parentheses)";
 
-int openingPosition = message.IndexOf('(');
-int closingPosition = message.IndexOf(')');
+const string openingSymbol = "(";
+const string closingSymbol = ")";
 
-openingPosition += 1;
+int openingPosition = message.IndexOf(openingSymbol);
+int closingPosition = message.IndexOf(closingSymbol);
+
+openingPosition += openingSymbol.Length;
 
 Console.WriteLine(openingPosition);
 Console.WriteLine(closingPosition);
 
-Console.WriteLine(message.Substring(openingPosition, closingPosition - openingPosition));
+Console.WriteLine(message[openingPosition..closingPosition]);
