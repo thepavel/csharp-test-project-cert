@@ -1,25 +1,33 @@
 ﻿
 //string message = "(What if) I am (only interested) in the last (set of parentheses)";
-string message = "(What if) there are (more than) one (set of parentheses)?";
+//string message = "(What if) there are (more than) one (set of parentheses)?";
 
 //retrieve all instances
+string message = "Help (find) the {opening symbols}";
+Console.WriteLine($"Searching THIS message {message}");
 
-const string openingSymbol = "(";
-const string closingSymbol = ")";
+char[] openSymbols = { '[', '{', '(' };
+int startPosition = 6;
 
-while (true)
-{
+int openingPosition = message.IndexOfAny(openSymbols);
+Console.WriteLine($"Found WITHOUT using startPosition: {message.Substring(openingPosition)}");
 
-    int openingPosition = message.IndexOf(openingSymbol);
-    int closingPosition = message.IndexOf(closingSymbol);
+openingPosition = message.IndexOfAny(openSymbols, startPosition);
+Console.WriteLine($"Found WITH using startPosition: {message.Substring(openingPosition)}");
 
-    if(openingPosition == -1) break;
+// while (true)
+// {
 
-    openingPosition += 1;
+//     int openingPosition = message.IndexOf(openingSymbol);
+//     int closingPosition = message.IndexOf(closingSymbol);
 
-    Console.WriteLine(message[openingPosition..closingPosition]);
-    message = message[(closingPosition + 1)..];
-}
+//     if(openingPosition == -1) break;
+
+//     openingPosition += 1;
+
+//     Console.WriteLine(message[openingPosition..closingPosition]);
+//     message = message[(closingPosition + 1)..];
+// }
 
 
 
