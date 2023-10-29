@@ -1,7 +1,7 @@
-﻿string message = "Find what is (inside the parentheses)";
+﻿string message = "What is the value <span>between the tags</span>?";
 
-const string openingSymbol = "(";
-const string closingSymbol = ")";
+const string openingSymbol = "<span>";
+const string closingSymbol = "</span>";
 
 int openingPosition = message.IndexOf(openingSymbol);
 int closingPosition = message.IndexOf(closingSymbol);
