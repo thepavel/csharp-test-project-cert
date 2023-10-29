@@ -1,19 +1,53 @@
 ﻿
 //string message = "(What if) I am (only interested) in the last (set of parentheses)";
 //string message = "(What if) there are (more than) one (set of parentheses)?";
-
-//retrieve all instances
-string message = "Help (find) the {opening symbols}";
-Console.WriteLine($"Searching THIS message {message}");
+//string message = "Help (find) the {opening symbols}";
+string message = "(What if) I have [different symbols] but every {open symbol} needs a [matching closing symbol]?";
 
 char[] openSymbols = { '[', '{', '(' };
-int startPosition = 6;
+int closingPosition = 0;
 
-int openingPosition = message.IndexOfAny(openSymbols);
-Console.WriteLine($"Found WITHOUT using startPosition: {message.Substring(openingPosition)}");
+while (true)
+{
+    int openingPosition = message.IndexOfAny(openSymbols, closingPosition);
+    if(openingPosition == -1) break;
 
-openingPosition = message.IndexOfAny(openSymbols, startPosition);
-Console.WriteLine($"Found WITH using startPosition: {message.Substring(openingPosition)}");
+    string currentSymbol = message.Substring(openingPosition, 1);
+    char closingSymbol = GetClosingSymbol(currentSymbol);
+
+    openingPosition += 1;
+    closingPosition = message.IndexOf(closingSymbol, openingPosition);
+
+    Console.WriteLine(message[openingPosition..closingPosition]);
+}
+
+static char GetClosingSymbol(string symbol) {
+
+    // Now  find the matching closing symbol
+
+    switch (symbol)
+    {
+        case "[":
+            return ']';
+        case "{":
+            return '}';
+        case "(":
+            return ')';
+        default:
+            return ' ';
+    }
+
+}
+
+// int startPosition = 6;
+
+// int openingPosition = message.IndexOfAny(openSymbols);
+// Console.WriteLine($"Found WITHOUT using startPosition: {message.Substring(openingPosition)}");
+
+// openingPosition = message.IndexOfAny(openSymbols, startPosition);
+// Console.WriteLine($"Found WITH using startPosition: {message.Substring(openingPosition)}");
+
+
 
 // while (true)
 // {
