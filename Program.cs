@@ -1,4 +1,5 @@
-﻿
+﻿using System.Globalization;
+
 /* EXPECTED:
 
 Dear Ms. Barros,
@@ -15,19 +16,6 @@ Glorious Future     13.13 %   $63,000,000.00
 
 */
 
-using System.Globalization;
-
-const string expected = @"Dear Ms. Barros,
-As a customer of our Magic Yield offering we are excited to tell you about a new financial product that would dramatically increase your return.
-
-Currently, you own 2,975,000.00 shares at a return of 12.75 %.
-
-Our new product, Glorious Future offers a return of 13.13 %.  Given your current volume, your potential profit would be ¤63,000,000.00.
-
-Here's a quick comparison:
-
-Magic Yield         12.75 %   $55,000,000.00      
-Glorious Future     13.13 %   $63,000,000.00";
 
 string customerName = "Ms. Barros";
 
@@ -49,17 +37,8 @@ Our new product, {newProduct} offers a return of {newReturn.ToString("P", Cultur
 ";
 
 Console.WriteLine(message);
-//Here's a quick comparison:
 
 Console.WriteLine("Here's a quick comparison:\n");
-
-string comparisonMessage = $@"
-// Magic Yield         12.75 %   $55,000,000.00      
-// Glorious Future     13.13 %   $63,000,000.00";
-// name: pad-right 20
-// percent: pad-right 10
-// add amount in currency format
-// Your logic here
 
 var currentLine = CreateComparisonLine(currentProfit, currentProduct, currentReturn);
 var newProductComparisonLine = CreateComparisonLine(newProfit, newProduct, newReturn);
@@ -67,20 +46,14 @@ var newProductComparisonLine = CreateComparisonLine(newProfit, newProduct, newRe
 Console.WriteLine(currentLine);
 Console.WriteLine(newProductComparisonLine);
 
-Console.WriteLine(comparisonMessage);
-
-
-Console.WriteLine(string.Compare(expected, message));
-
-Console.WriteLine("expected:");
-Console.WriteLine(expected);
-
 static string CreateComparisonLine(decimal currentProfit, string name, decimal returnPercentage)
 {
-
+    // name: pad-right 20
+    // percent: pad-right 10
+    // add amount in currency format
     string comparisonName = name.PadRight(20);
     string comparisonPercentage = returnPercentage.ToString("P", CultureInfo.InvariantCulture);
-    return $"{comparisonName}{comparisonPercentage}  {currentProfit:C}\n";
+    return $"{comparisonName}{comparisonPercentage}   {currentProfit:C}";
 }
 
 #region StringFormat
