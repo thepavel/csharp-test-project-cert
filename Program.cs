@@ -1,43 +1,48 @@
-﻿
+﻿string data = "12345John Smith          5000  3  ";
+
+string updatedData = data.Remove(5, 20);
+Console.WriteLine(updatedData);
+
+
 //string message = "(What if) I am (only interested) in the last (set of parentheses)";
 //string message = "(What if) there are (more than) one (set of parentheses)?";
 //string message = "Help (find) the {opening symbols}";
-string message = "(What if) I have [different symbols] but every {open symbol} needs a [matching closing symbol]?";
+// string message = "(What if) I have [different symbols] but every {open symbol} needs a [matching closing symbol]?";
 
-char[] openSymbols = { '[', '{', '(' };
-int closingPosition = 0;
+// char[] openSymbols = { '[', '{', '(' };
+// int closingPosition = 0;
 
-while (true)
-{
-    int openingPosition = message.IndexOfAny(openSymbols, closingPosition);
-    if(openingPosition == -1) break;
+// while (true)
+// {
+//     int openingPosition = message.IndexOfAny(openSymbols, closingPosition);
+//     if(openingPosition == -1) break;
 
-    string currentSymbol = message.Substring(openingPosition, 1);
-    char closingSymbol = GetClosingSymbol(currentSymbol);
+//     string currentSymbol = message.Substring(openingPosition, 1);
+//     char closingSymbol = GetClosingSymbol(currentSymbol);
 
-    openingPosition += 1;
-    closingPosition = message.IndexOf(closingSymbol, openingPosition);
+//     openingPosition += 1;
+//     closingPosition = message.IndexOf(closingSymbol, openingPosition);
 
-    Console.WriteLine(message[openingPosition..closingPosition]);
-}
+//     Console.WriteLine(message[openingPosition..closingPosition]);
+// }
 
-static char GetClosingSymbol(string symbol) {
+// static char GetClosingSymbol(string symbol) {
 
-    // Now  find the matching closing symbol
+//     // Now  find the matching closing symbol
 
-    switch (symbol)
-    {
-        case "[":
-            return ']';
-        case "{":
-            return '}';
-        case "(":
-            return ')';
-        default:
-            return ' ';
-    }
+//     switch (symbol)
+//     {
+//         case "[":
+//             return ']';
+//         case "{":
+//             return '}';
+//         case "(":
+//             return ')';
+//         default:
+//             return ' ';
+//     }
 
-}
+// }
 
 // int startPosition = 6;
 
