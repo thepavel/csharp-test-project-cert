@@ -1,13 +1,45 @@
 ﻿
 const string input = "<div><h2>Widgets &trade;</h2><span>5000</span></div>";
 
+string divStart = "<div>";
+string divEnd = "</div>";
+
+//replace div tags
 string quantity = "";
-string output = "";
+string output = input.Replace(divStart, string.Empty).Replace(divEnd, string.Empty);
 
+//replace &trade; with &reg;
+
+string symbol = "&trade;";
+string replacement = "&reg;";
+
+output = output.Replace(symbol, replacement);
+/*
+ * Desired output:
+ * Quantity: 5000
+ * Output: <h2>Widgets &reg;</h2><span>5000</span>
+ *
+ */
 // Your work here
+string spanStart = "<span>";
+string spanEnd = "</span>";
 
-Console.WriteLine(quantity);
-Console.WriteLine(output);
+int quantityStartPosition = output.IndexOf(spanStart);
+if (quantityStartPosition != -1)
+{
+    quantityStartPosition += spanStart.Length;
+    quantity = output[quantityStartPosition..output.IndexOf(spanEnd)];
+}
+
+Console.WriteLine($"Quantity: {quantity}");
+Console.WriteLine($"Output: {output}");
+
+var outputDiff = output.CompareTo("Output: <h2>Widgets &reg;</h2><span>5000</span>");
+
+if (outputDiff != 0)
+{
+    Console.WriteLine($"Output differs at position {outputDiff}");
+}
 
 // string data = "12345John Smith          5000  3  ";
 
