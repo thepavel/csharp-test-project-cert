@@ -2,68 +2,41 @@
  * https://learn.microsoft.com/en-us/training/modules/write-first-c-sharp-method/4-exercise-create-reusable-methods
  *
  */
-int[] times = {800, 1200, 1600, 2000};
+int[] times = { 800, 1200, 1600, 2000 };
 
 
-
-int diff = 0;
-
-Console.WriteLine("Enter current GMT");
+Console.WriteLine("Enter current GMT Offset");
 int currentGMT = Convert.ToInt32(Console.ReadLine());
+bool isValid = ValidateOffset(currentGMT);
 
-Console.WriteLine("Current Medicine Schedule:");
+const string CurrentMedSchedule = "Current Medicine Schedule:";
+DisplayTimes(times, CurrentMedSchedule);
 
-DisplayTimes(times);
-
-Console.WriteLine();
-
-Console.WriteLine("Enter new GMT");
+Console.WriteLine("Enter new GMT Offset");
 int newGMT = Convert.ToInt32(Console.ReadLine());
 
-if (Math.Abs(newGMT) > 12 || Math.Abs(currentGMT) > 12)
+isValid = isValid && ValidateOffset(newGMT);
+if(isValid) 
 {
-    Console.WriteLine("Invalid GMT");
-}
-else if (newGMT <= 0 && currentGMT <= 0 || newGMT >= 0 && currentGMT >= 0) 
-{
-    diff = 100 * (Math.Abs(newGMT) - Math.Abs(currentGMT));
-    AdjustTimeToWithin24Hours(times, diff);
-} 
-else
-{
-    diff = 100 * (Math.Abs(newGMT) + Math.Abs(currentGMT));
+    var diff = Math.Abs(newGMT - currentGMT)*100;
     AdjustTimeToWithin24Hours(times, diff);
 }
 
-Console.WriteLine("New Medicine Schedule:");
+const string NewMedSchedule = "New Medicine Schedule:";
+DisplayTimes(times, NewMedSchedule);
 
-DisplayTimes(times);
-
-Console.WriteLine();
-
-static void DisplayTimes(int[] times)
+static void DisplayTimes(int[] times, string message)
 {
+    Console.WriteLine(message);
     /* Format and display medicine times */
     foreach (int val in times)
     {
-        string time = val.ToString();
-        int len = time.Length;
-
-        if (len >= 3)
-        {
-            time = time.Insert(len - 2, ":");
-        }
-        else if (len == 2)
-        {
-            time = time.Insert(0, "0:");
-        }
-        else
-        {
-            time = time.Insert(0, "0:0");
-        }
-
-        Console.Write($"{time} ");
+        var militaryTime = $"{val:0000}";
+        string thyme = $"{militaryTime[..2]}:{militaryTime.Substring(2, 2)}";
+        Console.WriteLine(thyme);
     }
+
+    Console.WriteLine();
 }
 
 static void AdjustTimeToWithin24Hours(int[] times, int diff)
@@ -74,4 +47,16 @@ static void AdjustTimeToWithin24Hours(int[] times, int diff)
     {
         times[i] = ((times[i] + diff)) % 2400;
     }
+}
+
+static bool ValidateOffset(int offset)
+{
+
+    if (Math.Abs(offset) <= 12)
+    {
+        return true;
+    }
+
+    Console.WriteLine("Invalid Offset");
+    return false;
 }
